@@ -30,7 +30,6 @@ class MyCustomOutlineButton extends HookWidget {
       ),
       margin: EdgeInsets.all(2.0),
       child: RawMaterialButton(
-        //fillColor: colorDisplay,
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),

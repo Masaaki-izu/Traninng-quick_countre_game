@@ -9,13 +9,13 @@ import 'model/data_firestore.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([  //画面を縦固定
+  SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  await Firebase.initializeApp();  //Firebase プロジェクト追加
-  DataFirestore  dataFirestore =  DataFirestore(); //Firestore data のインスタンス
-  await dataFirestore.allReadData();  //データ読込
-  SeSound soundIns = SeSound();  //インスタンス、効果音の読込
+  await Firebase.initializeApp();
+  DataFirestore  dataFirestore =  DataFirestore();
+  await dataFirestore.rankingReadData();
+  SeSound soundIns = SeSound();
 
   runApp(
     ProviderScope(
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([]);//ステータスバーとナビゲーションバーを非表示
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),

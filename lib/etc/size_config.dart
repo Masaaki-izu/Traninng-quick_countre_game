@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-// 画面によって表示サイズ調整
+
 class SizeConfig {
 	static MediaQueryData? _mediaQueryData;
 	static double? screenWidth;

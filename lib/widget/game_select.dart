@@ -30,11 +30,11 @@ class GameSelectWidget extends HookWidget {
                       borderRadius: new BorderRadius.circular(15.0))
               ),
               onPressed: () {
-                soundIns?.playSe(SeSoundIds.sound_effect0);
+                soundIns?.playSe(SeSoundIds.sound_game_select);
                 provider.letterSelectValue = 0;
               },
               child: Text(
-                selectGame[0], //'1-30',
+                selectGame[0],
                 style: TextStyle(
                   fontSize: SizeConfig.safeBlockHorizontal! * 7.2,
                   color: Colors.white,
@@ -51,13 +51,11 @@ class GameSelectWidget extends HookWidget {
                       borderRadius: new BorderRadius.circular(15.0))
               ),
               onPressed: () {
-                soundIns?.playSe(SeSoundIds.sound_effect0); //0
-                //startIns.playSound(0);
+                soundIns?.playSe(SeSoundIds.sound_game_select);
                 provider.letterSelectValue = 1;
-                //});
               },
               child: Text(
-                selectGame[1],//'A-Z',
+                selectGame[1],
                 style: TextStyle(
                   fontSize: SizeConfig.safeBlockHorizontal! * 7.2,
                   color: Colors.white,
@@ -75,14 +73,12 @@ class GameSelectWidget extends HookWidget {
                       borderRadius: new BorderRadius.circular(15.0))
               ),
               onPressed: () {
-                soundIns?.playSe(SeSoundIds.sound_effect0);//0
-                //startIns.playSound(0);
+                soundIns?.playSe(SeSoundIds.sound_game_select);
                   provider.letterSelectValue = 2;
-                //});
               },
 
               child: Text(
-                selectGame[2],//'a-z',
+                selectGame[2],
                 style: TextStyle(
                   fontSize: SizeConfig.safeBlockHorizontal! * 7.2,
                   color: Colors.white,

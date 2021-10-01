@@ -30,7 +30,6 @@ class GameDisplayExplanation extends StatelessWidget {
                   strExplanation[_count], //'FONT:',
                   style: textStyle,
                 ),
-
             ],
           ),
         ),

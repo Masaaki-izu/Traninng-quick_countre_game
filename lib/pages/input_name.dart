@@ -104,7 +104,7 @@ class InputNameWidget extends HookWidget {
                         color: Colors.black,
                         fontSize: safeBlockHorizontal * 5.5,
                       ),
-                      maxLength: inputCharMax , //15
+                      maxLength: inputCharMax ,
                       //maxLines: null,
                       controller: textEditingController,
                       inputFormatters: [
@@ -165,9 +165,6 @@ class InputNameWidget extends HookWidget {
                     if (name.length > inputCharMax) {
                      name = name.substring(0, inputCharMax);
                     }
-                    // if (name.length > 15) {
-                    //   name = name.substring(0, 15);
-                    // }
                     Navigator.pop(context, name);
                     SystemChrome.restoreSystemUIOverlays();
                   })

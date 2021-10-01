@@ -1,7 +1,7 @@
 const String fontName1 ='Bebas Neue';
 const String fontName2 = 'Aero Matics Regular';
 const String collectionName = 'QuickCuntre';
-const  int  counterMax = 600000; //タイムMAX
+const  int  counterMax = 600000;
 const List<String> selectGame = ['1-30', 'A-Z', 'a-z'];
 const List<String> strMessage = ['Game Over!', 'Congratulation!'];
 const List<String>fieldListName = ['numeral','uppercase','lowercase','name'];

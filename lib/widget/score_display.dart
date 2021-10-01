@@ -31,18 +31,18 @@ class ScoreDisplayWidget extends HookWidget {
           children: [
             TableRow(children: [
               Center(
-                child: Text(selectGame[0], //1-30
+                child: Text(selectGame[0],
                     style: textStyle0),
               ),
               Center(
                 child: Text(
-                  selectGame[1], //'A-Z',
+                  selectGame[1],
                   style: textStyle0,
                 ), //),
               ),
               Center(
                 child: Text(
-                  selectGame[2], //'a-z',
+                  selectGame[2],
                   style: textStyle0,
                 ), //),
               ),

@@ -51,7 +51,7 @@ class StartApp extends HookWidget {
               child: Center(
                 child: Column(
                   children: [
-                    (inputpro.stringInputName == '')// 名前など入力済みか
+                    (inputpro.stringInputName == '')
                         ? firstScreen()
                         : secondScreen(context, startGameProvider,
                             inputpro.stringInputName),
@@ -92,15 +92,14 @@ class StartApp extends HookWidget {
   }
 
   void start(BuildContext context, Game provider, String inputName) {
-    provider.shufflePositoins(provider.letterSelectValue); //表示文字のシャッフル
-    // ボタン押下のタイミングで効果音を再生
-    soundIns?.playSe(SeSoundIds.sound_effect1); //さぁ行くぞ
+    provider.shufflePositoins(provider.letterSelectValue);
+    soundIns?.playSe(SeSoundIds.sound_game_start);
 
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => GameApp(
-          soundIns: soundIns, //startIns: soundIns,
+          soundIns: soundIns,
           inputName: inputName,
           dataFirestore: dataFirestore,
         ),

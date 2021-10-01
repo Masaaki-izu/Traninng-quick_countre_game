@@ -125,19 +125,19 @@ class GameApp extends HookWidget {
     double scoreNow;
 
     try {
-      scoreNow = double.parse(timerLeft);// 今のスコア
+      scoreNow = double.parse(timerLeft);
     } catch (exception) {
       scoreNow= 999.99;
     }
-    if (isTimeUp == false &&  timerState == TimerState.finished) {//放置
+    if (isTimeUp == false &&  timerState == TimerState.finished) {
       _dispString = strMessage[0];
     }
-    else if (isTimeUp == false && playStatus == 0) {//ボタンクリック時
+    else if (isTimeUp == false && playStatus == 0) {
       _dispString = provider.emptyList[provider.buttonCounter];
       _magnification = 16.2;
     }
     else {
-      if (playStatus == 1) {//最後まで成功　
+      if (playStatus == 1) {
         _dispString = strMessage[1];
         _magnification = 16.2;
 
@@ -148,7 +148,7 @@ class GameApp extends HookWidget {
             } catch (exception) {
               numeral = 999.99;
             }
-            if (numeral > scoreNow) {// 前のデータ小さい場合
+            if (numeral > scoreNow) {
               Map<String, dynamic> upData = {
                 'name': this.inputName,
                 'numeral': scoreNow
@@ -244,24 +244,22 @@ class GameApp extends HookWidget {
         onPressed: () {
           if (playStatus == 1 || playStatus == 2) return;
           if (checkNo == provider.emptyList[provider.buttonCounter]) {
-            provider.buttonCounter++;//provider.increment();
+            provider.buttonCounter++;
             if (provider.buttonCounter >=
                 provider.buttonLastNumber[provider.letterSelectValue]) {
               isTimeUp = true;
               context.read(timerProvider).pause();
-              // OK メッセージ
               playStatus = 1;
-              soundIns?.playSe(SeSoundIds.sound_effect2);//やった
+              soundIns?.playSe(SeSoundIds.sound_game_success);
             }
             else {
-              soundIns?.playSe(SeSoundIds.sound_effect4);//泡
+              soundIns?.playSe(SeSoundIds.sound_game_button_ok);
              }
           } else {
-            //間違ってゲーム終了
             isTimeUp = true;
             playStatus = 2;
             context.read(timerProvider).stop();
-            soundIns?.playSe(SeSoundIds.sound_effect3);//鐘
+            soundIns?.playSe(SeSoundIds.sound_game_fail);
           }
         },
       ),
@@ -270,11 +268,10 @@ class GameApp extends HookWidget {
 
   void quitButton(BuildContext context, timerLeft,
       PlayGame playGame, Game provider) async{
-    if (isTimeUp == true && playStatus == 1) { // ゲーム　終了OK
-      //データセット
+    if (isTimeUp == true && playStatus == 1) {
       switch (provider.letterSelectValue) {
         case 0:
-          if (upDataGame == 1) {//データが更新されたか
+          if (upDataGame == 1) {
             playGame.strNumeral1from30 = timerLeft;upDataGame = 0;
           }
           await dataFirestore?.readData(collection: collectionName,fieldName: fieldListName[0],letterSelectValue:0 );
@@ -293,7 +290,6 @@ class GameApp extends HookWidget {
           break;
       }
     }
-    //初期化
     provider.buttonCounter = 0;
     Navigator.pop(context, '');
   }
