@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "180223236461",
+    "project_id": "quickcountregameapp",
+    "storage_bucket": "quickcountregameapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180223236461:android:f00fe6d990d8b92cfae264",
+        "android_client_info": {
+          "package_name": "com.example.quick_countre_game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180223236461-jdr40120p3i6nr84lvm7a2b3glhm86ao.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE-Mfo5WxCYkPfLLj2PLxigTiy6qdqU5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180223236461-jdr40120p3i6nr84lvm7a2b3glhm86ao.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

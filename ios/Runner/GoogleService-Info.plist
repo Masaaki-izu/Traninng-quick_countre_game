@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>180223236461-gqd3rc5ku6dsnma5isj1mb52scdtla63.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.180223236461-gqd3rc5ku6dsnma5isj1mb52scdtla63</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBpPQIacV_9-eKI40fGBHzDZAKLVrOmAzE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>180223236461</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.quickCountreGame</string>
+	<key>PROJECT_ID</key>
+	<string>quickcountregameapp</string>
+	<key>STORAGE_BUCKET</key>
+	<string>quickcountregameapp.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:180223236461:ios:93fb33931241bb28fae264</string>
+</dict>
+</plist>
