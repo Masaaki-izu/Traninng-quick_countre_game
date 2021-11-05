@@ -17,10 +17,9 @@ class GameDisplayExplanation extends StatelessWidget {
     return Expanded(
       child: Container(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 2.0),
+          padding: const EdgeInsets.only(top: 0, right: 0.0, bottom: 0, left: 6.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            //mainAxisAlignment: MainAxisAlignment.end,
             children: [
               SizedBox(
                 height: safeBlockHorizontal * 0.2,

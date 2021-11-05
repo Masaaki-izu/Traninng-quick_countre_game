@@ -6,6 +6,7 @@ final gameProvider = StateNotifierProvider((_) => Game());
 class Game extends StateNotifier<int> {
   Game() : super(0);
 
+
   int _buttonCounter = 0;
   int get buttonCounter  => _buttonCounter;
 
@@ -121,7 +122,6 @@ class Game extends StateNotifier<int> {
     '',
     ''
   ];
-
   List<List<String>> positionsList = [
     [
       '1',
@@ -232,8 +232,8 @@ class Game extends StateNotifier<int> {
   }
 
   List<int> buttonLastNumber = [
-   30,
-   26,
-   26,
+   3,//3//30,
+   3,//3,//26,
+   3,//3,//26,
   ];
 }

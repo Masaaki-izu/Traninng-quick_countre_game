@@ -20,10 +20,14 @@ class GameApp extends HookWidget {
   final SeSound? soundIns;
   GameApp({Key? key,  this.soundIns, this.inputName,this.dataFirestore}) : super(key: key);
 
-  static bool? isTimeUp = false;
-  static int? playStatus = 0;
-  static int? upDataGame = 0;
-  static TimerState?  datast = TimerState.initial;
+  // static bool? isTimeUp = false;
+  // static int? playStatus = 0;
+  // static int? upDataGame = 0;
+  // static TimerState?  datast = TimerState.initial;
+  bool? isTimeUp = false;
+  int? playStatus = 0;
+  int? upDataGame = 0;
+  TimerState?  datast = TimerState.initial;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +43,7 @@ class GameApp extends HookWidget {
       playStatus = 0;
       upDataGame = 0;
       context.read(timerProvider).start();
+      //provider.gameSwitch = 1;
       return () => {};
     }, const []);
 
@@ -53,7 +58,9 @@ class GameApp extends HookWidget {
           backgroundColor: Colors.transparent,
           body: SafeArea(
             child: Center(
-              child: Column(
+              child:Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Column(
                 children: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -66,8 +73,7 @@ class GameApp extends HookWidget {
                       MyCustomOutlineButton(
                         textDisplay: 'QUIT',
                         colorDisplay: Colors.redAccent.withOpacity(0.3),
-                        onCallback: () =>
-                        {
+                        onCallback: () => {
                           quitButton(
                               context, timerLeft, playGame, provider)
                         },
@@ -78,11 +84,11 @@ class GameApp extends HookWidget {
                     ],
                   ),
                   SizedBox(
-                    height: SizeConfig.safeBlockVertical! * 1.5,
+                    height: SizeConfig.safeBlockVertical! * 1.0,
                   ),
                   _countRendDisplay(playGame,provider,timerLeft ,timerState ,SizeConfig.safeBlockHorizontal!,inputpro),
                   SizedBox(
-                    height: SizeConfig.safeBlockVertical! * 6.0,
+                    height: SizeConfig.safeBlockVertical! * 2.0,//6.0,
                   ),
                   _createButton(
                       context,
@@ -91,6 +97,7 @@ class GameApp extends HookWidget {
                       provider,
                       SizeConfig.safeBlockHorizontal!),
                 ],
+              ),
               ),
             ),
           ),
@@ -111,12 +118,68 @@ class GameApp extends HookWidget {
       crossAxisCount: 5,
       mainAxisSpacing: 2.0,
       childAspectRatio: (itemWidth / itemHeight),
+      padding: const EdgeInsets.all(3.0),//only(left:2.0,right:2.0),//all(4),
 
       children: provider.emptyShuffleList.map((String value) {
-        return _buttonCheck( provider, context, itemWidth, value, scalingSize);
+        return _buttonCheck( provider, context, itemWidth,itemHeight, value, scalingSize);
       }).toList(),
     );
   }
+
+  Widget _buttonCheck( Game provider, BuildContext context, double width, double height,
+      String checkNo, double scalingSize) {
+
+    return Container(
+      width: width / 7.0, //7,
+      height: height * (2/3) *  (1/6) ,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.red, width: 2),//2
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(2.5),//2.5
+      ),
+      margin: EdgeInsets.all(8.0), //2.5 //8.0),
+      child: RawMaterialButton(
+        fillColor: Colors.redAccent.withOpacity(0.3),
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(3.5),//3.0
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 1),//2
+          child: Text(
+            checkNo,
+            style: TextStyle(
+                fontFamily: fontName2,
+                color: Colors.white,
+                fontSize: scalingSize * 10.0),//12
+            //textAlign: ,//9.0
+          ),
+        ),
+        onPressed: () {
+          if (playStatus == 1 || playStatus == 2) return;
+          if (checkNo == provider.emptyList[provider.buttonCounter]) {
+            provider.buttonCounter++;
+            if (provider.buttonCounter >=
+                provider.buttonLastNumber[provider.letterSelectValue]) {
+              isTimeUp = true;
+              context.read(timerProvider).pause();
+              playStatus = 1;
+              soundIns?.playSe(SeSoundIds.sound_game_success);
+            }
+            else {
+              soundIns?.playSe(SeSoundIds.sound_game_button_ok);
+             }
+          } else {
+            isTimeUp = true;
+            playStatus = 2;
+            context.read(timerProvider).stop();
+            soundIns?.playSe(SeSoundIds.sound_game_fail);
+          }
+        },
+      ),
+    );
+  }
+
 
   Widget _countRendDisplay(PlayGame playGame,Game provider,String timerLeft, timerState ,double scalingSize,inputpro) {
     String _dispString = '';
@@ -214,58 +277,6 @@ class GameApp extends HookWidget {
     );
   }
 
-  Widget _buttonCheck( Game provider, BuildContext context, double width,
-      String checkNo, double scalingSize) {
-
-    return Container(
-      width: width / 7,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.red, width: 2),
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(2.5),
-      ),
-      margin: EdgeInsets.all(8.0),
-      child: RawMaterialButton(
-        fillColor: Colors.redAccent.withOpacity(0.3),
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(3.0),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 2),
-          child: Text(
-            checkNo,
-            style: TextStyle(
-                fontFamily: fontName2,
-                color: Colors.white,
-                fontSize: scalingSize * 9.0),
-          ),
-        ),
-        onPressed: () {
-          if (playStatus == 1 || playStatus == 2) return;
-          if (checkNo == provider.emptyList[provider.buttonCounter]) {
-            provider.buttonCounter++;
-            if (provider.buttonCounter >=
-                provider.buttonLastNumber[provider.letterSelectValue]) {
-              isTimeUp = true;
-              context.read(timerProvider).pause();
-              playStatus = 1;
-              soundIns?.playSe(SeSoundIds.sound_game_success);
-            }
-            else {
-              soundIns?.playSe(SeSoundIds.sound_game_button_ok);
-             }
-          } else {
-            isTimeUp = true;
-            playStatus = 2;
-            context.read(timerProvider).stop();
-            soundIns?.playSe(SeSoundIds.sound_game_fail);
-          }
-        },
-      ),
-    );
-  }
-
   void quitButton(BuildContext context, timerLeft,
       PlayGame playGame, Game provider) async{
     if (isTimeUp == true && playStatus == 1) {
@@ -290,7 +301,8 @@ class GameApp extends HookWidget {
           break;
       }
     }
+
     provider.buttonCounter = 0;
-    Navigator.pop(context, '');
+    Navigator.pop(context, true);
   }
 }

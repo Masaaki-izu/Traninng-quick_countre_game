@@ -9,7 +9,7 @@ class TitleWidget extends StatelessWidget {
   final TextStyle textStyle = TextStyle(
       color: Colors.white,
       fontWeight: FontWeight.bold,
-      fontSize:  SizeConfig.safeBlockHorizontal! * 14.5,
+      fontSize:  SizeConfig.safeBlockHorizontal! * 14.0,
       fontFamily: fontName2);
 
   @override

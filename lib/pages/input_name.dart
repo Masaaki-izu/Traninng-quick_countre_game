@@ -2,19 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:quick_countre_game/etc/input_storage.dart';
 import 'package:quick_countre_game/model/data_firestore.dart';
 import '../provider/input_name_provider.dart';
 import '../provider/play_game.dart';
 import '../etc/size_config.dart';
 import '../etc/cs.dart';
 
-const int  inputCharMax = 10;
+const int  inputCharMax = 8;
 
 class InputNameWidget extends HookWidget {
   final DataFirestore? dataFirestore;
-  InputNameWidget({Key? key, this.dataFirestore }) : super(key: key);
+  final InputStorage? inputStorage;
+  InputNameWidget({Key? key, this.dataFirestore,this.inputStorage}) : super(key: key);
 
   final TextEditingController textEditingController = TextEditingController();
+  bool isInputFlag = false;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +32,10 @@ class InputNameWidget extends HookWidget {
         children: [
           GestureDetector(
             onTap: () {
+              isInputFlag = false;
+              if (inputpro.stringInputName != '')textEditingController.text = inputpro.stringInputName;
               _showInputDialog(inputpro,context,
-                  SizeConfig.screenWidth!, SizeConfig.safeBlockHorizontal!,playGame );
+                  SizeConfig.screenWidth!, SizeConfig.safeBlockHorizontal!,playGame,);//_ioProvider );
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -55,7 +60,6 @@ class InputNameWidget extends HookWidget {
                         fontFamily: fontName2,
                       ),
                       textAlign: TextAlign.center,
-                      //overflow: TextOverflow.ellipsis,//
                     ),
                   ),
                 ),
@@ -72,7 +76,7 @@ class InputNameWidget extends HookWidget {
   }
 
   Future<void> _showInputDialog(inputpro,BuildContext context,
-      double screenWidth, double safeBlockHorizontal, playGame ) async {
+      double screenWidth, double safeBlockHorizontal, PlayGame playGame,/* IoController _ioProvider */ ) async {
 
     await showDialog<String>(
       context: context,
@@ -161,6 +165,7 @@ class InputNameWidget extends HookWidget {
                         fontFamily: fontName2),
                   ),
                   onPressed: () {
+                    isInputFlag = true;
                     var name = textEditingController.text;
                     if (name.length > inputCharMax) {
                      name = name.substring(0, inputCharMax);
@@ -171,9 +176,15 @@ class InputNameWidget extends HookWidget {
             ],
           ),
     ).then((value) {
-      if (value != '') {
+      if (isInputFlag){
         inputpro.inputName(value);
-        dataFirestore?.nameCheck(collection: 'QuickCuntre',inputName: value,playGame: playGame);
+        inputStorage?.writeInputText(value.toString());
+        if (value != '' ) {
+          dataFirestore?.nameCheck(collection: 'QuickCuntre',inputName: value,playGame: playGame);
+        }
+        else{
+          playGame.scoreClear();
+        }
       }
     });
   }

@@ -25,5 +25,10 @@ class PlayGame extends StateNotifier<String> {
       state = s;
           _strLowercaseAfromZ = s;
   }
+  void scoreClear(){
+    strNumeral1from30 = '999.99';
+    strUppercaseAfromZ = '999.99';
+    strLowercaseAfromZ = '999.99';
+  }
 }
 

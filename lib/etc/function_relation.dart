@@ -1,3 +1,4 @@
+//
 int  periodPosition(String data)
 {
   return data.indexOf('.');
