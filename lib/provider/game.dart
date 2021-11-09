@@ -232,8 +232,8 @@ class Game extends StateNotifier<int> {
   }
 
   List<int> buttonLastNumber = [
-   3,//3//30,
-   3,//3,//26,
-   3,//3,//26,
+   30,//3//30,
+   26,//3,//26,
+   26,//3,//26,
   ];
 }
