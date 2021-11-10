@@ -1,6 +1,6 @@
 # quick_countre_game
 
-A new Flutter project.
+A new Flutter project.   （Flutter  version   2.5.3)
 
 ## Getting Started
 
